@@ -48,7 +48,7 @@ jobs:
     - name: Test Report
       if: always
       uses: dorny/test-reporter@v1
-        with:
-          name: JUnit Test
-          path: junit/test-results.xml
-          reporter: java-junit
+      with:
+        name: JUnit Test
+        path: junit/test-results.xml
+        reporter: java-junit
