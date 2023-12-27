@@ -45,11 +45,3 @@ jobs:
       with:
         name: pytest-results
         path: junit/test-results.xml
-    - name: Test Report
-      if: always()
-      uses: dorny/test-reporter@v1
-      with:
-        name: JUnit Test
-        path: junit/test-results.xml
-        reporter: java-junit
-        token: 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
