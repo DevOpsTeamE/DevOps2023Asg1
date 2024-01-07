@@ -1,13 +1,17 @@
 name: Test an Deploy
 on:
-    push:
-      branches:
-        - 'main'
-    pull_request:
-      types:
-        - opened
-      branches:
-        - 'main'
+  workflow_dispatch:
+    
+  issues:
+    types: [opened]
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'main'
 jobs:
   build:
     runs-on: Ubuntu-latest
