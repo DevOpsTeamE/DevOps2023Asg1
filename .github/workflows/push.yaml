@@ -1,11 +1,6 @@
 name: Test an Deploy
 on:
   workflow_dispatch:
-
-on:
-  repository_dispatch:
-    types: [trigger-workflow]
-    
   issues:
     types: [opened]
   push:
