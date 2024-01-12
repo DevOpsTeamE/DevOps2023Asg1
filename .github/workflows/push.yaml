@@ -25,7 +25,7 @@ jobs:
         path: tests
     - name: Move files to root
       run: |
-        mv ./tests/${{ github.ref_name }}.py ./
+        mv ./tests/${{ github.base_ref }}.py ./
         rm -rf tests
 
     - name: Show directory
