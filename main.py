@@ -1,5 +1,5 @@
 from flask import Flask
-from controllers.main_controller import HomeController
+from controllers.home_controller import HomeController
 
 def create_app():
     app =Flask(__name__)

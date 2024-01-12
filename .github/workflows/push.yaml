@@ -3,19 +3,21 @@ on:
   workflow_dispatch:
   issues:
     types: [opened]
-  push:
-    branches:
-      - 'main'
   pull_request:
     types:
       - opened
+      - synchronize
+      - reopened
     branches:
-      - 'main'
+      - '*'
+      
 jobs:
   build:
     runs-on: Ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
     - uses: actions/checkout@v4
       with:
         repository: DevOpsTeamE/DevOps2023Asg1_Test
@@ -23,7 +25,7 @@ jobs:
         path: tests
     - name: Move files to root
       run: |
-        mv ./tests/*.py ./
+        mv ./tests/${{ github.head_ref }}.py ./
         rm -rf tests
 
     - name: Show directory
