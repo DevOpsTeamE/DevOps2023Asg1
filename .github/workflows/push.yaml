@@ -1,0 +1,51 @@
+name: Test an Deploy
+on:
+  workflow_dispatch:
+  issues:
+    types: [opened]
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+      with:
+        repository: DevOpsTeamE/DevOps2023Asg1_Test
+        token: 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
+        path: tests
+    - name: Move files to root
+      run: |
+        mv ./tests/*.py ./
+        rm -rf tests
+
+    - name: Show directory
+      run: | 
+        ls -l
+        mkdir artifacts
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11.6'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install Flask
+    - name: Test with pytest
+      run: |
+        pip install pytest pytest-cov
+        pytest --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+    - name: Upload pytest test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: pytest-results
+        path: junit/test-results.xml
