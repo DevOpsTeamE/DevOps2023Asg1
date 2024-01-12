@@ -6,11 +6,10 @@ on:
   pull_request:
     types:
       - opened
+      - synchronize
+      - reopened
     branches:
       - '*'
-  push:
-    branches:
-      - '!main'
       
 jobs:
   build:
@@ -26,7 +25,7 @@ jobs:
         path: tests
     - name: Move files to root
       run: |
-        mv ./tests/*.py ./
+        mv ./tests/${{ github.ref_name }}.py ./
         rm -rf tests
 
     - name: Show directory
