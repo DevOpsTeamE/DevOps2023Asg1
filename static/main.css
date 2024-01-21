@@ -1,0 +1,24 @@
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-left:5%;
+    padding-right: 5%;
+    padding-top: 1%;
+}
+
+.login-center {
+    padding: 1em;
+}
+
+.center-text {
+    margin: 10%;
+    text-align: center;
+}
+
+.div-login-center {
+    margin-top: 5%;
+    margin-left: 35%;
+    margin-right: 35%;
+    text-align: center;
+}
