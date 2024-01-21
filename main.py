@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from controllers.home_controller import HomeController
 
 def create_app():
@@ -6,7 +6,7 @@ def create_app():
 
     @app.route("/login")
     def loginPage():
-        return "Login Page"
+        return render_template('login.html')
 
 
     app.register_blueprint(HomeController)
