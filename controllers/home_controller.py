@@ -3,13 +3,21 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import session
-from controllers.utilities.user import get_user, get_user_role_name
+from controllers.utilities.user import get_user, get_user_role_name, has_user, register_user
 
 HomeController =Blueprint('Home', __name__, template_folder='../templates/Home/', url_prefix='/', static_folder='static', static_url_path='/static');
 
 @HomeController.get('/')
 def index():
 	return render_template('index.html');
+
+def set_session(user):
+	user =users[0]
+	role_name =get_user_role_name(user.role_id)
+	assert role_name
+	session['user'] =user.serialize()
+	session['role_name'] =role_name
+	return role_name
 
 @HomeController.get('/login')
 def login_page():
@@ -31,17 +39,23 @@ def login():
 	if len(users)==0:
 		return render_template('login.html')
 	else:
-		user =users[0]
-		role_name =get_user_role_name(user.role_id)
-		assert role_name
-		session['user'] =user.serialize()
-		session['role_name'] =role_name
+		role_name =set_user_session(users[0])
 
 		if role_name =='Admin':
 			return redirect('/admin/')
 		elif role_name =='User':
 			return redirect('/user/')
 		return render_template('login.html')
+
+@HomeController.post('/register')
+def register():
+	username =request.form['username']
+	password =request.form['password']
+
+	if not has_user(username):
+		user =register_user(username, password)
+	return render_template('login.html')
+
 
 @HomeController.get('/logout')
 def logout():
