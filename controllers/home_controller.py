@@ -42,3 +42,8 @@ def login():
 		elif role_name =='User':
 			return redirect('/user/')
 		return render_template('login.html')
+
+@HomeController.get('/logout')
+def logout():
+	session.clear()
+	return redirect('/')
