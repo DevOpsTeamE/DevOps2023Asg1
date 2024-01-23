@@ -6,4 +6,4 @@ UserController =Blueprint("User", __name__, template_folder="../templates/User/"
 
 @UserController.get("/")
 def user_index():
-    return render_template('user_index.html')
+    return render_template('user_index.html', username= session['user']['username'])
