@@ -28,7 +28,9 @@ def set_session(user):
 
 @HomeController.get('/login')
 def login_page():
-	return user_redirect()
+	redirect = user_redirect()
+	if redirect is not None:
+		return redirect
 
 	return render_template('login.html')
 
@@ -38,11 +40,12 @@ def login():
 	password =request.form['password']
 
 	users =get_user(username, password)
-	if len(users)==0:
-		return render_template('login.html')
-	else:
+	if len(users)!=0:
 		role_name =set_session(users[0])
-		return user_redirect()
+		redirect =user_redirect()
+		if redirect is not None:
+			return redirect
+	return render_template('login.html')
 
 @HomeController.post('/register')
 def register():

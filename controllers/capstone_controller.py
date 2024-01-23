@@ -3,7 +3,7 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import session
-from controllers.utilities.capstone import create_capstone, has_capstone
+from controllers.utilities.capstone import create_capstone, has_capstone, query_capstone
 from controllers.home_controller import user_redirect
 
 CapstoneController =Blueprint('Capstone', __name__, template_folder='../templates/Capstone/', url_prefix='/capstone', static_folder='static', static_url_path='/static');
@@ -23,3 +23,12 @@ def capstone_create_post():
         return user_redirect()
 
     return render_template('capstone_create.html')
+
+@CapstoneController.get('/')
+def query_capstone_page():
+    year =request.args.get('year')
+    keyword =request.args.get('keyword')
+    if year is None or keyword is None:
+        return render_template('capstone_query.html')
+    capstones = query_capstone(year, keyword)
+    return render_template('capstone_query_result.html', capstones =capstones)
