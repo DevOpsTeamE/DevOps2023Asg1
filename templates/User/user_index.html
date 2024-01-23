@@ -6,7 +6,13 @@
     <body>
         <div class="flex-container">
             <h1>TSAO Capstone Records System</h1>
-            <a href="/logout"><button type="button" class="btn btn-danger"><div>Log Out</div></button></a>            
+            <a href="/logout" method><button type="button" class="btn btn-danger"><div>Log Out</div></button></a> 
+        </div>
+        <div class="div-login-center">
+            <h1>Hi {{username}},<br>Welcome to the TSAO Capstone Records System</h1>
+            <div style="margin-top:10%" class="flex-container">
+                <a href="/capstone/create"><button type="button" class="btn btn-success"><div>Create</div></button></a>
+            </div>
         </div>
     </body>
 </html>
