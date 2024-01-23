@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask import render_template
+from flask import session
 
 UserController =Blueprint("User", __name__, template_folder="../templates/User/", url_prefix="/user", static_folder='static', static_url_path='/static');
 
