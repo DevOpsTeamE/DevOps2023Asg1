@@ -18,9 +18,19 @@ CREATE TABLE user(
     FOREIGN KEY(role_id) REFERENCES role(id)
 );
 
+CREATE TABLE capstone(
+    pic varchar(100) NOT NULL,
+    role_id int NOT NULL,
+    nstudent int NOT NULL,
+    year int NOT NULL,
+    title varchar(100) NOT NULL,
+    companyname varchar(100) NOT NULL,
+    poc varchar(100) NOT NULL,
+    description varchar(300) NOT NULL
+);
 
-INSERT role VALUES(1, 'Admin');
-INSERT role VALUES(2, 'User');
-INSERT INTO user VALUES('joshuang321', 'password123!', 1, 1);
-INSERT INTO user VALUES('joshuang_user321', 'password123!', 2, 1);
-INSERT INTO user VALUES('inactive_user', 'password', 1, 0)
+INSERT INTO role VALUES(0, 'Admin');
+INSERT INTO role VALUES(1, 'User');
+
+INSERT INTO user VALUES('joshuang321', 'password123!', 0, 1);
+INSERT INTO user VALUES('joshuang_user321', 'password123!', 1, 1);

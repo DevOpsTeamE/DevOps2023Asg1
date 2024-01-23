@@ -7,12 +7,19 @@ from controllers.utilities.user import get_user, get_user_role_name, has_user, r
 
 HomeController =Blueprint('Home', __name__, template_folder='../templates/Home/', url_prefix='/', static_folder='static', static_url_path='/static');
 
+def user_redirect():
+	if 'role_name' in session:
+		role_name =session['role_name']
+		if role_name =='Admin':
+			return redirect('/admin/')
+		else:
+		    return redirect('/user/')
+
 @HomeController.get('/')
 def index():
 	return render_template('index.html');
 
 def set_session(user):
-	user =users[0]
 	role_name =get_user_role_name(user.role_id)
 	assert role_name
 	session['user'] =user.serialize()
@@ -21,12 +28,7 @@ def set_session(user):
 
 @HomeController.get('/login')
 def login_page():
-	if 'user' in session:
-		role_name =session['role_name']
-		if role_name =='Admin':
-			return redirect('/admin/')
-		elif role_name =='User':
-			return redirect('/user/')
+	return user_redirect()
 
 	return render_template('login.html')
 
@@ -39,13 +41,8 @@ def login():
 	if len(users)==0:
 		return render_template('login.html')
 	else:
-		role_name =set_user_session(users[0])
-
-		if role_name =='Admin':
-			return redirect('/admin/')
-		elif role_name =='User':
-			return redirect('/user/')
-		return render_template('login.html')
+		role_name =set_session(users[0])
+		return user_redirect()
 
 @HomeController.post('/register')
 def register():
