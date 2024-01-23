@@ -6,14 +6,38 @@ def get_user(username, password):
     cur =connection.cursor()
     cur.execute('SELECT * FROM user WHERE username=%(username)s AND password=%(password)s', {'username':username, 'password' : password})
     results =cur.fetchall()
+    cur.close()
+    connection.close()
     users =[]
     for res in results:
         users.append(User(res))
     return users
+
+def has_user(username):
+    connection =create_connection()
+    cur =connection.cursor()
+    cur.execute('SELECT * FROM user WHERE username=%(username)s', {'username' :username})
+    results =cur.fetchall()
+    cur.close()
+    connection.close()
+    for res in results:
+        if res[0] ==username:
+            return True
+    return False
 
 def get_user_role_name(role_id):
     connection =create_connection()
     cur =connection.cursor()
     cur.execute('SELECT name FROM role WHERE id=%(role_id)s', {'role_id' : role_id})
     result =cur.fetchall()
+    cur.close()
+    connection.close()
     return result[0][0]
+
+def register_user(username, password):
+    connection =create_connection()
+    cur =connection.cursor()
+    cur.execute('INSERT INTO user VALUES(%(username)s, %(password)s, 2, 0)', {'username' : username, 'password' :password})
+    connection.commit()
+    cur.close()
+    connection.close()

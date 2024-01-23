@@ -3,6 +3,7 @@ class User:
         self.username =res[0]
         self.password =res[1]
         self.role_id =res[2]
+        self.is_active =res[3]
 
     def serialize(self):
         return { \
