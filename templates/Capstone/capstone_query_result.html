@@ -10,16 +10,18 @@
         </div>
         <div class="div-login-center">
             <h1 style="text-decoration: underline;">
-                Capstone Entry Query
+                Query Result
             </h1>
             <div style="margin-left:auto;margin-right:auto;margin-top:5%;" class="card" style="width: 18rem;">
                 <ul class="list-group list-group-flush">
                     {% for capstone in capstones %}
                     <li id="capstone" style="display:flex;justify-content: space-around;height:50px" class="list-group-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox">
-                            <label id="title" class="form-check-label" for="checkbox">{{ capstone.title }}</label>
-                        </div>
+                        <a href="/capstone/modify/{{capstone.title}}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkbox">
+                                <label id="title" class="form-check-label" for="checkbox">{{ capstone.title }}</label>
+                            </div>
+                         </a>
                         <p id="person" style="color:#808080"> {{ capstone.person }}</p>
                     </li>
                     {% endfor %}
