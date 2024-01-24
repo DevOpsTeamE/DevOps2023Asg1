@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{url_for('Home.static', filename='main.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <body>
+        <div class="flex-container">
+            <h1>TSAO Capstone Records System</h1>
+        </div>
+        <div class="div-login-center">
+            <h1 style="text-decoration: underline;">
+                Query Result
+            </h1>
+            <div style="margin-left:auto;margin-right:auto;margin-top:5%;" class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    {% for capstone in capstones %}
+                    <li id="capstone" style="display:flex;justify-content: space-around;height:50px" class="list-group-item">
+                        <a href="/capstone/modify/{{capstone.title}}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkbox">
+                                <label id="title" class="form-check-label" for="checkbox">{{ capstone.title }}</label>
+                            </div>
+                         </a>
+                        <p id="person" style="color:#808080"> {{ capstone.person }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div style="margin-top:5%;">
+                <button id="export-button" width="100px" type="button" class="btn btn-success">Export</button>
+                <a href="/login"><button type="button" class="btn btn-success"><div>Return</div></button></a>
+            </div>
+            <script>
+                $('#export-button').click(function(e) {
+                    text ='Title, Person In Charge\n';
+                    count =0;
+
+                    $('#capstone').toArray().forEach(function (item) {
+                        if (item.querySelector('#checkbox').checked) {
+                            count+=1;
+                            title =item.querySelector('#title').innerHTML;
+                            person =item.querySelector('#person').innerHTML;
+                            text += title + ',' + person +'\n';
+                        }
+                    });
+                    if (count >0) {
+                        const file = new File([text], 'capstone-export.csv', {
+                        type: 'text/plain',
+                        })
+
+                        function download() {
+                            const link = document.createElement('a')
+                            const url = URL.createObjectURL(file)
+
+                            link.href = url
+                            link.download = file.name
+                            document.body.appendChild(link)
+                            link.click()
+
+                            document.body.removeChild(link)
+                            window.URL.revokeObjectURL(url)
+                        }
+                        download();
+                    }
+                    else {
+                        alert("Please select one or more of the capstones to export");
+                    }
+                });
+            </script>
+        </div>
+    </body>
+</html>
