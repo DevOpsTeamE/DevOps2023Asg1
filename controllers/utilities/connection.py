@@ -6,5 +6,5 @@ def create_connection():
     	port=3306,
    	 user='devopsuser',
     	password='password123!',
-		database='devops2023asg1')
+		database='DevOps2023Asg1')
 	return connection
