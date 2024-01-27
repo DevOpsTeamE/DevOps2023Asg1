@@ -1,4 +1,4 @@
-name: Test an Deploy
+name: Test System Integration
 on:
   push:
   workflow_dispatch:

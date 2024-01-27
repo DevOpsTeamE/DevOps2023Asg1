@@ -1,4 +1,4 @@
-name: Test an Deploy
+name: Test Branches
 on:
   workflow_dispatch:
   issues:
