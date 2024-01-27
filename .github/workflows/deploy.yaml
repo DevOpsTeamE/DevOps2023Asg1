@@ -1,0 +1,44 @@
+name: Test an Deploy
+on:
+    workflow_dispatch
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Show directory
+      run: | 
+        ls -l
+        mkdir artifacts
+        mv controllers artifacts
+        mv static artifacts
+        mv templates artifacts
+        mv database_setup.sql artifacts
+        mv main.py artifacts
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      if: success()
+      with:
+        path: artifacts
+    - name: Download artifacts
+      if: success()
+      uses: actions/download-artifact@v3
+      with:
+        path: artifacts
+    - name: Create Archive
+      if: success()
+      uses: thedoctor0/zip-release@0.7.5
+      with:
+        directory: artifacts
+        path: .
+        filename: 'release.zip'
+        type: 'zip'
+    - name: Upload Archive
+      if: success()
+      uses: softprops/action-gh-release@v1
+      with: 
+        token: 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
+        tag_name: ${{ vars.VERSION }}
+        files: release.zip
+        name: deployable-devops-release
