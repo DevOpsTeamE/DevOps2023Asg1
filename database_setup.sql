@@ -1,3 +1,7 @@
+CREATE USER 'devopsuser'@'localhost' IDENTIFIED WITH authentication_plugin BY 'password123!';
+GRANT ALL PRIVILEGES ON *.* TO 'devopsuser'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
 CREATE DATABASE DevOps2023Asg1;
 USE DevOps2023Asg1;
 SHOW DATABASES;
