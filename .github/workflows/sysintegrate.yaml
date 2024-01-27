@@ -1,15 +1,7 @@
 name: Test an Deploy
 on:
+  push:
   workflow_dispatch:
-  issues:
-    types: [opened]
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    branches:
-      - '*'
       
 jobs:
   build:
