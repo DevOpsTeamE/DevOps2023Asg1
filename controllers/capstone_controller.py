@@ -3,8 +3,12 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import session
-from controllers.utilities.capstone import create_capstone, has_capstone, query_capstone, get_capstone_by_title, update_capstone
 from controllers.home_controller import user_redirect
+
+from controllers.utilities.capstone import create_capstone, \
+    has_capstone, query_capstone, \
+    get_capstone_by_title, update_capstone, \
+    delete_capstone_title 
 
 CapstoneController =Blueprint('Capstone', __name__, template_folder='../templates/Capstone/', url_prefix='/capstone', static_folder='static', static_url_path='/static');
 
@@ -40,7 +44,7 @@ def query_capstone_page():
 def modify_capstone_page(title):
     if title is not None and type(title) is str:
         capstone =get_capstone_by_title(title)
-        return render_template('capstone_modify.html', capstone=capstone)
+        return render_template('capstone_modify.html', capstone=capstone, role=session['role_name'])
     return redirect('/login')
 
 @CapstoneController.post('/modify/<title>')
@@ -52,3 +56,9 @@ def modify_capstone_request(title):
             request.form['poc'], \
             request.form['description'])
         return render_template('capstone_modify.html', capstone=capstone)
+
+@CapstoneController.post('/delete')
+def delete_capstone():
+    title =request.form['title']
+    delete_capstone_title(title)
+    return redirect('/capstone')

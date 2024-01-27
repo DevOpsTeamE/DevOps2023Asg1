@@ -73,6 +73,10 @@
                 <input value="{{capstone.description}}" class="form-control" id="description" name="description" placeholder="Write here">
                 <div style="margin-top:5%;display:flex;flex-direction: row;justify-content: space-around;">
                     <button type="submit" width="100px" type="button" class="btn btn-success">Modify</button>
+                    {% if role=="Admin" %}
+                    
+                    <button type="submit" formmethod="post" formaction="/capstone/delete" width="100px" type="button" class="btn btn-danger">Delete</button>
+                    {% endif %}
                     <a href="/login"><button type="button" class="btn btn-danger"><div>Cancel</div></button></a>
                 </div>
             </form>
