@@ -27,8 +27,8 @@ sudo mv -f nginx.config /etc/nginx/sites-available/devops
 sudo ln -sf /etc/nginx/sites-available/devops /etc/nginx/sites-enabled
 sudo systemctl restart nginx
 
-python3 -m venv DevOpsEnv
-source DevOpsEnv/bin/activate
+#python3 -m venv DevOpsEnv
+#source DevOpsEnv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install Flask
 python3 -m pip install mysql-connector-python
