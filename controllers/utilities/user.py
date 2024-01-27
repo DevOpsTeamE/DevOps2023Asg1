@@ -34,10 +34,17 @@ def get_user_role_name(role_id):
     connection.close()
     return result[0][0]
 
-def register_user(username, password):
+def actual_register_user(username, password, isactive):
     connection =create_connection()
     cur =connection.cursor()
-    cur.execute('INSERT INTO user VALUES(%(username)s, %(password)s, 2, 0)', {'username' : username, 'password' :password})
+    cur.execute('INSERT INTO user VALUES(%(username)s, %(password)s, 1, %(isactive)s)', {'username' : username, 'password' :password, \
+        'isactive' :isactive})
     connection.commit()
     cur.close()
     connection.close()
+
+def register_user(username, password):
+    actual_register_user(username, password, 0)
+
+def register_user_as_admin(username, password):
+    actual_register_user(username, password, 1)
