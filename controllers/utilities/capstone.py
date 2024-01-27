@@ -75,3 +75,11 @@ def update_capstone(title, pic, role, \
     cur.close()
     connection.close()
     return Capstone((pic, role, nstudents, year, newtitle, companyname, poc, description, title))
+
+def delete_capstone_title(title):
+    connection =create_connection()
+    cur =connection.cursor()
+    cur.execute('DELETE FROM capstone WHERE title=%(title)s', {'title' : title})
+    connection.commit()
+    cur.close()
+    connection.close()
