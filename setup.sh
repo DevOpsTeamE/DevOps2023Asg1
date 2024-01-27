@@ -33,6 +33,6 @@ python3 -m pip install --upgrade pip
 python3 -m pip install Flask
 python3 -m pip install mysql-connector-python
 python3 -m pip install wheel
-python3 -m pip install gunicorn flask
+python3 -m pip install gunicorn
 sudo ufw allow 5000
 sudo apt update
