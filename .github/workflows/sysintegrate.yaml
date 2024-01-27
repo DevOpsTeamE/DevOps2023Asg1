@@ -59,8 +59,8 @@ jobs:
       if: success()
       uses: appleboy/ssh-action@v0.1.10
       with:
-        host:  @34.69.244.172
-        username: $ joshuang321_gmail_com
+        host:  ${{ secrets.HOSTNAME }}
+        username: joshuang321_gmail_com
         key: ${{ secrets.KEY }}
         port: 22
         command_timeout: 30m
