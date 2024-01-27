@@ -1,4 +1,3 @@
-screen -q
 mkdir devops
 mv DevOps2023Asg1/controllers devops
 mv DevOps2023Asg1/static devops
@@ -38,4 +37,4 @@ python3 -m pip install wheel
 python3 -m pip install gunicorn flask
 sudo ufw allow 5000
 sudo apt update
-gunicorn -w 4 'main:create_app()'
+screen -m -d "gunicorn -w 4 'main:create_app()'"
