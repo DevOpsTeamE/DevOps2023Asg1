@@ -1,4 +1,3 @@
-screen -q
 mkdir devops
 mv DevOps2023Asg1/controllers devops
 mv DevOps2023Asg1/static devops
@@ -11,7 +10,6 @@ sudo rm -rf DevOps2023Asg1
 
 cd devops
 
-killall screen
 sudo pkill gunicorn
 sudo apt update
 sudo apt --assume-yes install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
@@ -38,4 +36,3 @@ python3 -m pip install wheel
 python3 -m pip install gunicorn flask
 sudo ufw allow 5000
 sudo apt update
-gunicorn -w 4 'main:create_app()'
