@@ -18,6 +18,7 @@ jobs:
     - name: Move files to root
       run: |
         mv ./tests/*.py ./
+        mv ./tests/*.sql ./
         rm -rf tests
 
     - name: Show directory
