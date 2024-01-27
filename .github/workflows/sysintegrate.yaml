@@ -67,4 +67,4 @@ jobs:
         port: 22
         command_timeout: 30m
         script: | 
-          sudo rm -rf *;git clone https://joshuang321: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@github.com/DevOpsTeamE/DevOps2023Asg1; sudo bash ~/DevOps2023Asg1/setup.sh; cd devops; python3 -m gunicorn -w 4 'main:create_app()';
+          sudo rm -rf *;git clone https://joshuang321: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@github.com/DevOpsTeamE/DevOps2023Asg1sudo bash ~/DevOps2023Asg1/setup.sh

@@ -27,8 +27,8 @@ sudo mv -f nginx.config /etc/nginx/sites-available/devops
 sudo ln -sf /etc/nginx/sites-available/devops /etc/nginx/sites-enabled
 sudo systemctl restart nginx
 
-#python3 -m venv DevOpsEnv
-#source DevOpsEnv/bin/activate
+python3 -m venv DevOpsEnv
+source DevOpsEnv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install Flask
 python3 -m pip install mysql-connector-python
@@ -36,3 +36,4 @@ python3 -m pip install wheel
 python3 -m pip install gunicorn
 sudo ufw allow 5000
 sudo apt update
+python3 -m gunicorn -w 4 'main:create_app()' &
