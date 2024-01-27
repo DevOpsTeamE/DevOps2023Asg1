@@ -1,4 +1,3 @@
-sudo rm -rf *
 mkdir devops
 mv DevOps2023Asg1/controllers devops
 mv DevOps2023Asg1/static devops
