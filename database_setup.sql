@@ -1,4 +1,4 @@
-CREATE USER 'devopsuser'@'localhost' IDENTIFIED WITH authentication_plugin BY 'password123!';
+CREATE USER 'devopsuser'@'localhost' IDENTIFIED BY 'password123!';
 GRANT ALL PRIVILEGES ON *.* TO 'devopsuser'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
