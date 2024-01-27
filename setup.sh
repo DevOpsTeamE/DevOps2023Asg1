@@ -1,4 +1,3 @@
-sudo pkill gunicorn
 screen -q
 mkdir devops
 mv DevOps2023Asg1/controllers devops
@@ -12,6 +11,7 @@ sudo rm -rf DevOps2023Asg1
 
 cd devops
 
+killall screen
 sudo apt update
 sudo apt --assume-yes install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
 sudo apt --assume-yes install python3-venv
