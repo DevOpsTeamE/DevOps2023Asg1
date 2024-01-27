@@ -30,6 +30,3 @@ CREATE TABLE capstone(
 
 INSERT INTO role VALUES(0, 'Admin');
 INSERT INTO role VALUES(1, 'User');
-
-INSERT INTO user VALUES('joshuang321', 'password123!', 0, 1);
-INSERT INTO user VALUES('joshuang_user321', 'password123!', 1, 1);
