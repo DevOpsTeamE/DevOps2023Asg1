@@ -34,3 +34,5 @@ CREATE TABLE capstone(
 
 INSERT INTO role VALUES(0, 'Admin');
 INSERT INTO role VALUES(1, 'User');
+
+INSERT INTO user VALUES('rootuser', 'root123!', 0, 1);
