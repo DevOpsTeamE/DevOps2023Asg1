@@ -36,4 +36,4 @@ python3 -m pip install wheel
 python3 -m pip install gunicorn
 sudo ufw allow 5000
 sudo apt update
-python3 -m gunicorn -w 4 'main:create_app()' &
+python3 -m gunicorn --daemon -w 4 'main:create_app()'
