@@ -9,7 +9,6 @@ sudo apt --assume-yes install mysql-server
 sudo systemctl start mysql.service
 sudo systemctl status mysql.service
 
-sudo mysql --user=root --password=root < predatabase_setup.sql
 sudo mysql --user=root --password=root < database_setup.sql
 
 sudo apt --assume-yes install nginx
