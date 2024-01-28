@@ -28,12 +28,14 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         path: artifacts
+    - name: Navigate to artifacts
+      run: |
+        cd artifacts
+        ls -l
     - name: Create Archive
       if: success()
       uses: thedoctor0/zip-release@0.7.5
       with:
-        directory: artifacts
-        path: .
         filename: 'release.zip'
         type: 'zip'
     - name: Upload Archive
