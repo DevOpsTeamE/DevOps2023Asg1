@@ -15,8 +15,8 @@ jobs:
         mv templates artifacts
         mv database_setup.sql artifacts
         mv main.py artifacts
-        mv setup.sh artifacts
-        mv production_nginx.config artifacts
+        mv production_setup.sh artifacts/setup.sh
+        mv production_nginx.config artifacts/nginx.config
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
