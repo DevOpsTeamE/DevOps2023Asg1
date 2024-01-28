@@ -31,7 +31,7 @@ jobs:
       if: success()
       uses: thedoctor0/zip-release@0.7.5
       with:
-        directory: artifacts
+        path: artifacts
         filename: 'release.zip'
         type: 'zip'
     - name: Upload Archive
