@@ -10,7 +10,7 @@ sudo rm -rf DevOps2023Asg1
 
 cd devops
 
-sudo pkill gunicorn
+sudo pkill python3
 sudo apt update
 sudo apt --assume-yes install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
 sudo apt --assume-yes install python3-venv
