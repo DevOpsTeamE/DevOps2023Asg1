@@ -23,11 +23,6 @@ jobs:
       if: success()
       with:
         path: artifacts
-    - name: Download artifacts
-      if: success()
-      uses: actions/download-artifact@v3
-      with:
-        path: artifacts
     - name: Navigate to artifacts
       run: |
         cd artifacts
@@ -36,6 +31,7 @@ jobs:
       if: success()
       uses: thedoctor0/zip-release@0.7.5
       with:
+        directory: artifacts
         filename: 'release.zip'
         type: 'zip'
     - name: Upload Archive
