@@ -46,7 +46,7 @@ jobs:
         
     - name: Test with pytest
       run: |
-        pip install pytest pytest-cov
+        pip install pytest==7.4.3 pytest-cov
         pytest --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
     - name: Upload pytest test results
       if: always()
