@@ -38,7 +38,7 @@ jobs:
       if: success()
       uses: softprops/action-gh-release@v1
       with: 
-        token: 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
+        token: ${{github.token}}
         tag_name: ${{ vars.VERSION }}
         files: release.zip
         name: deployable-devops-release
