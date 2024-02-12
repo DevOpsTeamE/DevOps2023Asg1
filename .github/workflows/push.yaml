@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: DevOpsTeamE/DevOps2023Asg1_Test
-        token: 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
+        token: ${{github.token}}
         path: tests
     - name: Move files to root
       run: |
