@@ -8,8 +8,8 @@ on:
       - opened
       - synchronize
       - reopened
-    branches:
-      - '*'
+    branches-ignore:
+      - main
       
 jobs:
   build:
